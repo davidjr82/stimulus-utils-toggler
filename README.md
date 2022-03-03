@@ -1,4 +1,4 @@
-# stimulus-utils-toggler
+# @davidjr82/stimulus-utils-toggler
 
 Reusable toggler controller for Stimulus [Stimulus](https://stimulusjs.org/).
 ## Table of Contents
@@ -17,9 +17,9 @@ $ yarn add @davidjr82/stimulus-utils-toggler
 
 ```js
 import { Controller } from '@hotwired/stimulus';
-import Toggler from 'stimulus-utils-toggler';
+import Toggler from '@davidjr82/stimulus-utils-toggler';
 // ...
-// Manually register `stimulus-utils-toggler` as a stimulus controller
+// Manually register `@davidjr82/stimulus-utils-toggler` as a stimulus controller
 application.register('toggler', Toggler);
 ```
 
