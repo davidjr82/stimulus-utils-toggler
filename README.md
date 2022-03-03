@@ -10,7 +10,7 @@ Reusable toggler controller for Stimulus [Stimulus](https://stimulusjs.org/).
 ## Installation
 
 ```sh
-$ yarn add stimulus-utils-toggler
+$ yarn add @davidjr82/stimulus-utils-toggler
 ```
 
 ### Register the Controller
