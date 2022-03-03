@@ -5,7 +5,6 @@ Reusable toggler controller for Stimulus [Stimulus](https://stimulusjs.org/).
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Options](#options)
 - [License](#license)
 
 ## Installation
