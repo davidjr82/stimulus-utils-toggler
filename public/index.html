@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./style.css" rel="stylesheet">
+        <script src="./bundle.js"></script>
+    </head>
+    <body>
+
+        <div class="flex" data-controller="toggler">
+
+            <div class="grid grid-rows-3 grid-flow-col gap-4 mx-auto text-center">
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 1</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block2" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 2</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block3" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 3</div>
+
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block1" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 1</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block2" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 2</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block3" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 3</div>
+
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block1" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 1</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block2" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 2</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block3" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 3</div>
+
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1" data-toggler-hide="block2" data-toggler-toggle="block3" class="cursor-pointer bg-pink-900 text-white p-6 m-6">Show 1, Hide 2, Toggle 3</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1 block2 block3" class="cursor-pointer bg-gray-900 text-white p-6 m-6">Show all blocks</div>
+                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block1 block2 block3" class="cursor-pointer bg-gray-900 text-white p-6 m-6">Hide all blocks</div>
+
+                <div class="border border-blue-900 m-6 w-48">
+                    <div data-toggler-name="block1" class="p-6 bg-blue-900 text-white" data-toggler-open>
+                        <p>This is the block1</p>
+                    </div>
+                </div>
+                <div class="border border-blue-900 m-6 w-48">
+                    <div data-toggler-name="block2" class="p-6 bg-blue-900 text-white hidden">
+                        <p>This is the block2</p>
+                    </div>
+                </div>
+                <div class="border border-blue-900 m-6 w-48">
+                    <div data-toggler-name="block3" class="p-6 bg-blue-900 text-white hidden">
+                        <p>This is the block3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
