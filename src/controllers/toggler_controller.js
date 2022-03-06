@@ -12,17 +12,60 @@ export default class extends Controller {
         this.toggleClasses(selectors);
     }
 
-    toggle(event) {
-        let selectors = this.toggleOpenValues(event.currentTarget);
+    hideOutside(event) {
+
+        // fill with elements that I am now inside, so will not be hidden
+        let in_targets = [];
+        document.querySelectorAll(`[data-toggler-hide-outside]`).forEach(target => {
+            if(target.contains(event.target)) {
+                in_targets = in_targets.concat(target.getAttribute('data-toggler-hide-outside')?.split(" ") || []);
+            }
+        });
+
+        // hide all elements that are not in in_targets
+        let already_hidden = [];
+        document.querySelectorAll(`[data-toggler-hide-outside]`).forEach(target => {
+            let elements_to_hide = target.getAttribute('data-toggler-hide-outside')?.split(" ") || [];
+
+            elements_to_hide.forEach(to_hide => {
+                if(! in_targets.includes(to_hide) && ! already_hidden.includes(to_hide)) {
+                    // change manually open values of element "to_hide", and then toggle its classes
+                    document.querySelectorAll(`[data-toggler-name="${to_hide}"]`).forEach((target) => target.toggleAttribute('data-toggler-open', false));
+                    this.toggleClasses([to_hide]);
+
+                    already_hidden.push(to_hide);
+                }
+            });
+        });
+    }
+
+    all(event) {
+        let selectors = this.toggleOpenValues(event.currentTarget, 'all');
         this.toggleClasses(selectors);
     }
 
-    toggleOpenValues(currentTarget) {
+    show(event) {
+        let selectors = this.toggleOpenValues(event.currentTarget, 'show');
+        this.toggleClasses(selectors);
+    }
+
+    hide(event) {
+        let selectors = this.toggleOpenValues(event.currentTarget, 'hide');
+        this.toggleClasses(selectors);
+    }
+
+    toggle(event) {
+        let selectors = this.toggleOpenValues(event.currentTarget, 'toggle');
+        this.toggleClasses(selectors);
+    }
+
+    // class helper - aka private method
+    toggleOpenValues(currentTarget, targetAttribute = 'all') {
 
         // get targets and actions
-        let dataShowAttribute = currentTarget.dataset?.togglerShow ? currentTarget.dataset?.togglerShow : null;
-        let dataHideAttribute = currentTarget.dataset?.togglerHide ? currentTarget.dataset?.togglerHide : null;
-        let dataToggleAttribute = currentTarget.dataset?.togglerToggle ? currentTarget.dataset?.togglerToggle : null;
+        let dataShowAttribute = (['all', 'show'].includes(targetAttribute) && currentTarget.dataset?.togglerShow) ? currentTarget.dataset?.togglerShow : null;
+        let dataHideAttribute = (['all', 'hide'].includes(targetAttribute) && currentTarget.dataset?.togglerHide) ? currentTarget.dataset?.togglerHide : null;
+        let dataToggleAttribute = (['all', 'toggle'].includes(targetAttribute) && currentTarget.dataset?.togglerToggle) ? currentTarget.dataset?.togglerToggle : null;
 
         let targetsToShow = dataShowAttribute?.split(" ") || [];
         let targetsToHide = dataHideAttribute?.split(" ") || [];
@@ -36,7 +79,9 @@ export default class extends Controller {
         return [...targetsToShow, ...targetsToHide, ...targetsToToggle];
     }
 
+    // class helper - aka private method
     toggleClasses(selectors) {
+
         selectors.forEach(selector => {
 
             let targets = document.querySelectorAll(`[data-toggler-name="${selector}"]`) || [];

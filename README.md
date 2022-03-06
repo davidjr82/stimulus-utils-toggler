@@ -26,20 +26,26 @@ application.register('toggler', Toggler);
 ## Usage
 
 1. Attach the controller to an element. Recommended to attach to a top-level container, like `<body>` or `<main>` so it can be used anywhere.
+  * `data-action="click@window->toggler#hideOutside touch@window->toggler#hideOutside"` can be attached to top-level container to use the "hide on click away" utility.
     * **Example:**
     ```html
-    <main data-controller="toggler">...</main>
+    <main data-controller="toggler" data-action="click@window->toggler#hideOutside touch@window->toggler#hideOutside">...</main>
     ```
 2. Attach an `action` and a `data-[show|hide|toggle]` data attribute to an element that should _perform_ the toggling.
     * **Example:**
     ```html
-    <button data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block1">Toggle</button>
+    <button data-action='click->toggler#all touch->toggler#all' data-toggler-toggle="block1">Toggle</button>
     ```
     * More than one target element can be specified with spaces.
     * More than one action can be used in the same trigger.
     * **Example:**
     ```html
-    <button data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block1 block2" data-toggler-show="block3" data-toggler-hide="block4 block5">Toggle 1 & 2, Show 3, Hide 4 & 5</button>
+    <button data-action='click->toggler#all touch->toggler#all' data-toggler-toggle="block1 block2" data-toggler-show="block3" data-toggler-hide="block4 block5">Toggle 1 & 2, Show 3, Hide 4 & 5</button>
+    ```
+    * `toggle#all` executes toggle, show and hide, but `toggle#show`, `toggle#hide`, `toggle#toggle` can be called alone
+    * **Example:**
+    ```html
+    <button data-action='click->toggler#all touch->toggler#all click@window->toggler#hide touch@window->toggler#hide' data-toggler-toggle="block4" data-toggler-hide="block4">Toggle 4 and hide when click outside</button>
     ```
 
 3. Attach a `data-toggler-name` to an element that should _be toggled_. The element is closed by default. If the element should start opened, add `data-toggler-open` to the element.
@@ -48,11 +54,18 @@ application.register('toggler', Toggler);
     <div data-toggler-name="block1" data-toggler-open>Block 1</div>
     ```
 
+3. Attach a `data-toggler-hide-outside="dropdown1"` to an element if is wanted that, when clicked outside that element, _other element_ is wanted _to be hidden_.
+    * Can be used within multiple elements `data-toggler-hide-outside="dropdown1 dropdown2 sidebar3"`
+    * **Example:**
+    ```html
+    <div data-toggler-hide-outside="dropdown1">When clicking outside this element, data-togler-name="dropdown1" will be hidden</div>
+    ```
+
 ### Toggle a single element
 
 ```html
 <main data-controller="toggler">
-  <button data-action="toggler#toggle" data-toggler-toggle="block1">
+  <button data-action="toggler#all" data-toggler-toggle="block1">
     Toggle Block 1
   </button>
 
@@ -66,7 +79,7 @@ application.register('toggler', Toggler);
 
 ```html
 <main data-controller="toggler">
-  <button data-action="toggler#toggle" data-toggler-toggle="block1 block2" data-toggler-show="block3"  data-toggler-hide="block4 block5">
+  <button data-action="toggler#all" data-toggler-toggle="block1 block2" data-toggler-show="block3"  data-toggler-hide="block4 block5">
     Toggle 1 & 2, Show 3, Hide 4 & 5
   </button>
 

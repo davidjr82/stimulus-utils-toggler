@@ -7,25 +7,26 @@
         <script src="./bundle.js"></script>
     </head>
     <body>
+        <div class="flex flex-col divide-y divide-dashed divide-gray-700 gap-4" data-controller="toggler" data-action="click@window->toggler#hideOutside touch@window->toggler#hideOutside">
 
-        <div class="flex" data-controller="toggler">
-
+            <!-- Regular toggle all actions -->
             <div class="grid grid-rows-3 grid-flow-col gap-4 mx-auto text-center">
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 1</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block2" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 2</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block3" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 3</div>
 
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block1" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 1</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block2" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 2</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block3" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 3</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-show="block1 block2 block3" class="cursor-pointer bg-gray-900 text-white p-6 m-6">Show 1, 2 & 3 blocks</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-hide="block1 block2 block3" class="cursor-pointer bg-gray-900 text-white p-6 m-6">Hide 1, 2 & 3 blocks</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-show="block1" data-toggler-hide="block2" data-toggler-toggle="block3" class="cursor-pointer bg-pink-900 text-white p-6 m-6">Show 1, Hide 2, Toggle 3</div>
 
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block1" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 1</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block2" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 2</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block3" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 3</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-show="block1" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 1</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-show="block2" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 2</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-show="block3" class="cursor-pointer bg-teal-900 text-white p-6 m-6">Show block 3</div>
 
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1" data-toggler-hide="block2" data-toggler-toggle="block3" class="cursor-pointer bg-pink-900 text-white p-6 m-6">Show 1, Hide 2, Toggle 3</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1 block2 block3" class="cursor-pointer bg-gray-900 text-white p-6 m-6">Show all blocks</div>
-                <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block1 block2 block3" class="cursor-pointer bg-gray-900 text-white p-6 m-6">Hide all blocks</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-hide="block1" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 1</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-hide="block2" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 2</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-hide="block3" class="cursor-pointer bg-red-900 text-white p-6 m-6">Hide block 3</div>
+
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-toggle="block1" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 1</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-toggle="block2" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 2</div>
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-toggle="block3" class="cursor-pointer bg-sky-900 text-white p-6 m-6">Toggle block 3</div>
 
                 <div class="border border-blue-900 m-6 w-48">
                     <div data-toggler-name="block1" class="p-6 bg-blue-900 text-white" data-toggler-open>
@@ -43,7 +44,52 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+            <!-- Like dropdown wiuth hiding when clicking outside, specific actions involved and hide outside (aka dropdown, sidebar...) -->
+            <div class="grid grid-rows-2 grid-flow-col gap-4 mx-auto text-center">
+                <div data-action="click->toggler#show touch->toggler#show" data-toggler-show="dropdown1" data-toggler-hide-outside="dropdown1" class="cursor-pointer bg-sky-900 text-white p-6 mx-6 mt-0">Show dropdown1</div>
+
+                <div class="border border-emerald-900 mx-6 mb-0 w-48" data-toggler-hide-outside="dropdown1">
+                    <div data-toggler-name="dropdown1" class="p-6 bg-blue-900 text-white hidden">
+                        <p>This is the dropdown1 content (hide clicking outside)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-rows-2 grid-flow-col gap-4 mx-auto text-center">
+                <div data-action="click->toggler#toggle touch->toggler#toggle" data-toggler-toggle="dropdown2" data-toggler-hide-outside="dropdown2" class="cursor-pointer bg-sky-900 text-white p-6 mx-6 mt-0">Toggle dropdown2</div>
+
+                <div class="border border-emerald-900 mx-6 mb-0 w-48" data-toggler-hide-outside="dropdown2">
+                    <div data-toggler-name="dropdown2" class="p-6 bg-blue-900 text-white hidden">
+                        <p>This is the dropdown2 content (hide clicking outside)</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Hide on click outside -->
+            <div class="grid grid-rows-1 grid-flow-col gap-4 mx-auto text-center">
+
+                <div data-action="click->toggler#all touch->toggler#all" data-toggler-show="block4 block5" data-toggler-toggle="block6" data-toggler-hide-outside="block4 block5 block6" class="cursor-pointer bg-pink-900 text-white p-6 m-6">Show 4 & 5, Toggle 6</div>
+
+                <div class="border border-blue-900 m-6 w-48" data-toggler-hide-outside="block4">
+                    <div data-toggler-name="block4" class="p-6 bg-blue-900 text-white" data-toggler-open>
+                        <p>This is the block4, hides block4 (itself) clicking outside</p>
+                    </div>
+                </div>
+                <div class="border border-blue-900 m-6 w-48" data-toggler-hide-outside="block5">
+                    <div data-toggler-name="block5" class="p-6 bg-blue-900 text-white hidden">
+                        <p>This is the block5, hides block5 (itself) clicking outside</p>
+                    </div>
+                </div>
+                <div class="border border-blue-900 m-6 w-48" data-toggler-hide-outside="block6">
+                    <div data-toggler-name="block6" class="p-6 bg-blue-900 text-white hidden">
+                        <p>This is the block6, hides block6 (itself) clicking outside</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
     </body>
 </html>

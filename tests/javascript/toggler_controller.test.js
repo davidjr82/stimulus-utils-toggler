@@ -33,23 +33,23 @@ describe("TogglerController", () => {
       beforeEach(() => {
             container = mountDOM(`
                 <div data-controller="toggler">
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1" data-testid="trigger-show-1">Show block 1</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1 block2" data-testid="trigger-show-1-2">Show block 1 & 2</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block3" data-testid="trigger-show-3">Show block 3</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block1" data-testid="trigger-show-1">Show block 1</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block1 block2" data-testid="trigger-show-1-2">Show block 1 & 2</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block3" data-testid="trigger-show-3">Show block 3</div>
 
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block3" data-testid="trigger-hide-3">Hide block 3</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block3 block4" data-testid="trigger-hide-3-4">Hide block 3 & 4</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block2" data-testid="trigger-hide-2">Hide block 2</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-hide="block3" data-testid="trigger-hide-3">Hide block 3</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-hide="block3 block4" data-testid="trigger-hide-3-4">Hide block 3 & 4</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-hide="block2" data-testid="trigger-hide-2">Hide block 2</div>
 
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block1" data-testid="trigger-toggle-1">Toggle block 1</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block3" data-testid="trigger-toggle-3">Toggle block 3</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block2 block4" data-testid="trigger-toggle-2-4">Toggle block 2 & 4</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-toggle="block1" data-testid="trigger-toggle-1">Toggle block 1</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-toggle="block3" data-testid="trigger-toggle-3">Toggle block 3</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-toggle="block2 block4" data-testid="trigger-toggle-2-4">Toggle block 2 & 4</div>
 
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block1" data-toggler-hide="block3" data-toggler-toggle="block4" data-testid="trigger-multiple">Show 1, hide 3 & toggle 4</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block1" data-toggler-hide="block3" data-toggler-toggle="block4" data-testid="trigger-multiple">Show 1, hide 3 & toggle 4</div>
 
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-show="block5 block6" data-testid="trigger-show-5-6">Show block 5 & 6 custom classes</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-hide="block5 block6" data-testid="trigger-hide-5-6">Hide block 5 & 6 custom classes</div>
-                    <div data-action='click->toggler#toggle touch->toggler#toggle' data-toggler-toggle="block5 block6" data-testid="trigger-toggle-5-6">Toggle block 5 & 6 custom classes</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block5 block6" data-testid="trigger-show-5-6">Show block 5 & 6 custom classes</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-hide="block5 block6" data-testid="trigger-hide-5-6">Hide block 5 & 6 custom classes</div>
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-toggle="block5 block6" data-testid="trigger-toggle-5-6">Toggle block 5 & 6 custom classes</div>
 
                     <div data-toggler-name="block1" data-testid="block-1">Block 1</div>
                     <div data-toggler-name="block2" class="hidden" data-testid="block-2">Block 2</div>

@@ -6,6 +6,8 @@
     "stimulus",
     "toggler",
     "toggle",
+    "reveal",
+    "show on off",
     "stimulus toggler",
     "stimulus toggle"
   ],
@@ -26,6 +28,7 @@
   },
   "scripts": {
     "test": "jest",
+    "build-demo": "npx tailwindcss -i ./src/style.css -o ./public/style.css && webpack",
     "build": "jest && npx tailwindcss -i ./src/style.css -o ./public/style.css && webpack"
   },
   "dependencies": {
