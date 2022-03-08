@@ -49,9 +49,9 @@ export default class extends Controller {
                         console.log('hideOutside - to_hide - ', to_hide);
                         console.log('hideOutside - already_hidden - ', already_hidden);
                     }
-
-                    already_hidden.push(to_hide);
                 }
+
+                already_hidden.push(to_hide);
             });
         });
     }
