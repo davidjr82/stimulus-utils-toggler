@@ -35,23 +35,23 @@ export default class extends Controller {
         }
 
         // hide all elements that are not in in_targets
-        let already_hidden = [];
+        let already_analyzed_to_hide = [];
         document.querySelectorAll(`[data-toggler-hide-outside]`).forEach(target => {
             let elements_to_hide = target.getAttribute('data-toggler-hide-outside')?.split(" ") || [];
 
             elements_to_hide.forEach(to_hide => {
-                if(! in_targets.includes(to_hide) && ! already_hidden.includes(to_hide)) {
+                if(! in_targets.includes(to_hide) && ! already_analyzed_to_hide.includes(to_hide)) {
                     // change manually open values of element "to_hide", and then toggle its classes
                     document.querySelectorAll(`[data-toggler-name="${to_hide}"]`).forEach((target) => target.toggleAttribute('data-toggler-open', false));
                     this.toggleClasses([to_hide]);
 
                     if(this.debugValue) {
                         console.log('hideOutside - to_hide - ', to_hide);
-                        console.log('hideOutside - already_hidden - ', already_hidden);
+                        console.log('hideOutside - already_analyzed_to_hide - ', already_analyzed_to_hide);
                     }
                 }
 
-                already_hidden.push(to_hide);
+                already_analyzed_to_hide.push(to_hide);
             });
         });
     }
