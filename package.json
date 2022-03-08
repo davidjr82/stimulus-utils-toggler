@@ -1,6 +1,6 @@
 {
   "name": "@davidjr82/stimulus-utils-toggler",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Reusable toggler controller for stimulus",
   "keywords": [
     "stimulus",
