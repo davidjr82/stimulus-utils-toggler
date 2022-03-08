@@ -47,11 +47,14 @@ export default class extends Controller {
 
                     if(this.debugValue) {
                         console.log('hideOutside - to_hide - ', to_hide);
-                        console.log('hideOutside - already_analyzed_to_hide - ', already_analyzed_to_hide);
                     }
                 }
 
                 already_analyzed_to_hide.push(to_hide);
+
+                if(this.debugValue) {
+                    console.log('hideOutside - already_analyzed_to_hide - ', already_analyzed_to_hide);
+                }
             });
         });
     }
