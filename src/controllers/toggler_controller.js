@@ -2,12 +2,20 @@ import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
 
+    static values = {
+        debug: { type: Boolean, default: false },
+    }
+
     connect() {
         let selectors = [];
 
         document.querySelectorAll(`[data-toggler-name]`).forEach(target => {
             selectors.push(target.getAttribute('data-toggler-name'));
         });
+
+        if(this.debugValue) {
+            console.log('connect - toggle classes - ', selectors);
+        }
 
         this.toggleClasses(selectors);
     }
@@ -22,6 +30,10 @@ export default class extends Controller {
             }
         });
 
+        if(this.debugValue) {
+            console.log('hideOutside - in_targets - ', in_targets);
+        }
+
         // hide all elements that are not in in_targets
         let already_hidden = [];
         document.querySelectorAll(`[data-toggler-hide-outside]`).forEach(target => {
@@ -33,6 +45,11 @@ export default class extends Controller {
                     document.querySelectorAll(`[data-toggler-name="${to_hide}"]`).forEach((target) => target.toggleAttribute('data-toggler-open', false));
                     this.toggleClasses([to_hide]);
 
+                    if(this.debugValue) {
+                        console.log('hideOutside - to_hide - ', to_hide);
+                        console.log('hideOutside - already_hidden - ', already_hidden);
+                    }
+
                     already_hidden.push(to_hide);
                 }
             });
@@ -40,21 +57,41 @@ export default class extends Controller {
     }
 
     all(event) {
+
+        if(this.debugValue) {
+            console.log('all - event.currentTarget - ', event.currentTarget);
+        }
+
         let selectors = this.toggleOpenValues(event.currentTarget, 'all');
         this.toggleClasses(selectors);
     }
 
     show(event) {
+
+        if(this.debugValue) {
+            console.log('show - event.currentTarget - ', event.currentTarget);
+        }
+
         let selectors = this.toggleOpenValues(event.currentTarget, 'show');
         this.toggleClasses(selectors);
     }
 
     hide(event) {
+
+        if(this.debugValue) {
+            console.log('hide - event.currentTarget - ', event.currentTarget);
+        }
+
         let selectors = this.toggleOpenValues(event.currentTarget, 'hide');
         this.toggleClasses(selectors);
     }
 
     toggle(event) {
+
+        if(this.debugValue) {
+            console.log('toggle - event.currentTarget - ', event.currentTarget);
+        }
+
         let selectors = this.toggleOpenValues(event.currentTarget, 'toggle');
         this.toggleClasses(selectors);
     }

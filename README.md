@@ -91,6 +91,15 @@ application.register('toggler', Toggler);
 </main>
 ```
 
+### Debug on production
+
+```html
+<main data-controller="toggler" data-toggler-debug-value>
+    ...
+</main>
+```
+
+
 ### Test
 
 ```bash
