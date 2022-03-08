@@ -50,10 +50,12 @@ export default class extends Controller {
                     }
                 }
 
-                already_analyzed_to_hide.push(to_hide);
+                if(! already_analyzed_to_hide.includes(to_hide)) {
+                    already_analyzed_to_hide.push(to_hide);
 
-                if(this.debugValue) {
-                    console.log('hideOutside - already_analyzed_to_hide - ', already_analyzed_to_hide);
+                    if(this.debugValue) {
+                        console.log('hideOutside - already_analyzed_to_hide - ', already_analyzed_to_hide);
+                    }
                 }
             });
         });
