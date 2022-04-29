@@ -140,18 +140,51 @@ export default class extends Controller {
 
                 // change classes
                 if(offClasses && !/^\s*$/.test(offClasses)) {
+
+                    this.fireEvents(target, 'togglerEventsOffBefore');
+
                     offClasses.split(' ').forEach(offClass => {
                         target.classList.toggle(offClass, !target.hasAttribute('data-toggler-open'));
                     });
+
+
+                    this.fireEvents(target, 'togglerEventsOff');
+                    this.fireEvents(target, 'togglerEventsOffAfter');
                 }
 
                 if(onClasses && !/^\s*$/.test(onClasses)) {
+
+                    this.fireEvents(target, 'togglerEventsOnBefore');
+
                     onClasses.split(' ').forEach(onClass => {
                         target.classList.toggle(onClass, target.hasAttribute('data-toggler-open'));
                     });
+
+                    this.fireEvents(target, 'togglerEventsOn');
+                    this.fireEvents(target, 'togglerEventsOnAfter');
                 }
 
+                this.fireEvents(target, 'togglerEvents');
             });
         });
+    }
+
+    fireEvents(target, eventDataSet) {
+
+        if(!target.dataset) {
+            return;
+        }
+
+        let togglerEvents = target.dataset[eventDataSet] || '';
+
+        if(togglerEvents && !/^\s*$/.test(togglerEvents)) {
+            togglerEvents.split(' ').forEach(togglerEvent => {
+                let eventDispatched = this.dispatch(togglerEvent, { detail: { content: target } });
+
+                if(this.debugValue) {
+                    console.log('fireEvents dispatched', target, togglerEvents, togglerEvent, eventDispatched);
+                }
+            });
+        }
     }
 }

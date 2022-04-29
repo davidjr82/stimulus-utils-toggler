@@ -112,6 +112,10 @@ npm run test
 npm run build
 ```
 
+### To DO
+
+- Tests dispatch events feature
+- Change data-toggler-name with data-target (breaking change)
 
 ### License
 
