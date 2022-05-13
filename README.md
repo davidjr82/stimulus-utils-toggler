@@ -115,7 +115,7 @@ npm run build
 ### To DO
 
 - Tests dispatch events feature
-- Change data-toggler-name with data-target (breaking change)
+- Add data-toggler-target to react when new item is added to dom
 
 ### License
 
