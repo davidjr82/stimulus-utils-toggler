@@ -9,8 +9,8 @@ export default class extends Controller {
     connect() {
         let selectors = [];
 
-        document.querySelectorAll(`[data-toggler-name]`).forEach(target => {
-            selectors.push(target.getAttribute('data-toggler-name'));
+        document.querySelectorAll(`[data-toggler-name], [data-toggler-tab]`).forEach(target => {
+            selectors.push(target);
         });
 
         if(this.debugValue) {
@@ -108,10 +108,30 @@ export default class extends Controller {
         let dataShowAttribute = (['all', 'show'].includes(targetAttribute) && currentTarget.dataset?.togglerShow) ? currentTarget.dataset?.togglerShow : null;
         let dataHideAttribute = (['all', 'hide'].includes(targetAttribute) && currentTarget.dataset?.togglerHide) ? currentTarget.dataset?.togglerHide : null;
         let dataToggleAttribute = (['all', 'toggle'].includes(targetAttribute) && currentTarget.dataset?.togglerToggle) ? currentTarget.dataset?.togglerToggle : null;
+        let dataTabAttribute = (['all'].includes(targetAttribute) && currentTarget.dataset?.togglerTab) ? currentTarget.dataset?.togglerTab : null;
 
         let targetsToShow = dataShowAttribute?.split(" ") || [];
         let targetsToHide = dataHideAttribute?.split(" ") || [];
         let targetsToToggle = dataToggleAttribute?.split(" ") || [];
+        let targetsToHideIfBelongToTab = dataTabAttribute?.split(" ") || [];
+
+
+        // for tab action, hide other tab contents before executing show
+        targetsToHideIfBelongToTab.forEach(tab => {
+
+            let tabSelectors = document.querySelectorAll(`[data-toggler-tab="${tab}"]`);
+
+            tabSelectors.forEach(tabSelector => {
+                if(! tabSelector.isEqualNode(currentTarget)) {
+                    tabSelector.toggleAttribute('data-toggler-open', false);
+                    targetsToHide = targetsToHide.concat(tabSelector, tabSelector.dataset?.togglerShow?.split(" ") || []);
+                }
+                else {
+                    currentTarget.toggleAttribute('data-toggler-open', true);
+                    targetsToShow = targetsToShow.concat(currentTarget);
+                }
+            });
+        });
 
         // toggle open value in the targets
         targetsToShow.forEach((target) => document.querySelectorAll(`[data-toggler-name="${target}"]`).forEach((target) => target.toggleAttribute('data-toggler-open', true)));
@@ -126,7 +146,9 @@ export default class extends Controller {
 
         selectors.forEach(selector => {
 
-            let targets = document.querySelectorAll(`[data-toggler-name="${selector}"]`) || [];
+            let targets = (typeof selector === 'string')
+                            ? document.querySelectorAll(`[data-toggler-name="${selector}"]`) || []
+                            : [selector];
 
             targets.forEach((target) => {
 

@@ -91,6 +91,43 @@ application.register('toggler', Toggler);
 </main>
 ```
 
+### Using as tabs
+
+```html
+<main data-controller="toggler">
+    <div class="border-b border-gray-200">
+        <nav class="-mb-px flex space-x-8 mx-auto">
+
+            <div
+                data-action="click->toggler#all touch->toggler#all"
+                data-toggler-tab="tab-demo"
+                data-toggler-show="tab-demo-content-1"
+                data-toggler-on-class="border-purple-500 text-purple-600"
+                data-toggler-off-class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                class="cursor-pointer whitespace-nowrap border-b-2 py-4 px-1 font-medium"
+                data-toggler-open>
+                Tab 1 </div>
+
+            <div
+                data-action="click->toggler#all touch->toggler#all"
+                data-toggler-tab="tab-demo"
+                data-toggler-show="tab-demo-content-2"
+                data-toggler-on-class="border-purple-500 text-purple-600"
+                data-toggler-off-class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                class="cursor-pointer whitespace-nowrap border-b-2 py-4 px-1 font-medium">
+                Tab 2 </div>
+        </nav>
+    </div>
+
+    <div data-toggler-name="tab-demo-content-1" data-toggler-open>
+        Tab 1 Content
+    </div>
+    <div data-toggler-name="tab-demo-content-2">
+        Tab 2 Content
+    </div>
+</main>
+```
+
 ### Debug on production
 
 ```html
