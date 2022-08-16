@@ -19,10 +19,10 @@ let block4 = null; // start open with class hidden
 let block5 = null; // start close with custom classes
 let block6 = null; // start open with custom classes
 
-let block7 = null; // clicking outside demo, show
-let block8 = null; // clicking outside demo, show
-let block9 = null; // clicking outside demo, toggle
-let block_outside_1 = null; // clicking outside demo
+let block7 = null; // clicking away demo, show
+let block8 = null; // clicking away demo, show
+let block9 = null; // clicking away demo, toggle
+let block_away_1 = null; // clicking away demo
 
 
 describe("TogglerController", () => {
@@ -38,7 +38,7 @@ describe("TogglerController", () => {
     describe("using default hidden class", () => {
       beforeEach(() => {
             container = mountDOM(`
-                <div data-controller="toggler" data-action="click@window->toggler#hideOutside touch@window->toggler#hideOutside">
+                <div data-controller="toggler" data-action="click@window->toggler#away touch@window->toggler#away">
 
                     <!-- regular on/off demos -->
                     <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block1"        data-testid="trigger-show-1">Show block 1</div>
@@ -68,13 +68,13 @@ describe("TogglerController", () => {
                     <div data-toggler-name="block6" data-toggler-open data-testid="block-6" data-toggler-on-class="custom-6-on" data-toggler-off-class="custom-6-off">Block 6 custom classes</div>
 
 
-                    <!-- clicking outside demos -->
-                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block7 block8" data-toggler-toggle="block9" data-toggler-hide-outside="block7 block8 block9" data-testid="trigger-hide-outside-1">Show 7 & 8, Toggle 9</div>
+                    <!-- clicking away demos -->
+                    <div data-action='click->toggler#all touch->toggler#all' data-toggler-show="block7 block8" data-toggler-toggle="block9" data-toggler-away="block7 block8 block9" data-testid="trigger-away-1">Show 7 & 8, Toggle 9</div>
 
-                    <div data-toggler-name="block7"                 data-testid="block-7" data-toggler-hide-outside="block7"  >Block 7, hides itself clicking outside</div>
-                    <div data-toggler-name="block8" class="hidden"  data-testid="block-8" data-toggler-hide-outside="block8" >Block 8, hides itself clicking outside</div>
-                    <div data-toggler-name="block9"                 data-testid="block-9" data-toggler-hide-outside="block9" >Block 9, hides itself clicking outside</div>
-                    <div                                            data-testid="block-outside-1">Block to test clicking outside</div>
+                    <div data-toggler-name="block7"                 data-testid="block-7" data-toggler-away="block7"  >Block 7, hides itself clicking away</div>
+                    <div data-toggler-name="block8" class="hidden"  data-testid="block-8" data-toggler-away="block8" >Block 8, hides itself clicking away</div>
+                    <div data-toggler-name="block9"                 data-testid="block-9" data-toggler-away="block9" >Block 9, hides itself clicking away</div>
+                    <div                                            data-testid="block-away-1">Block to test clicking away</div>
                 </div>
             `);
 
@@ -89,7 +89,7 @@ describe("TogglerController", () => {
             block7 = getByTestId(container, "block-7");
             block8 = getByTestId(container, "block-8");
             block9 = getByTestId(container, "block-9");
-            block_outside_1 = getByTestId(container, "block-outside-1");
+            block_away_1 = getByTestId(container, "block-away-1");
         });
 
         // connect
@@ -265,94 +265,94 @@ describe("TogglerController", () => {
         });
 
 
-        // clicking outside
-        test("show and toggle at the same time and dont trigger hide outside", () => {
+        // clicking away
+        test("show and toggle at the same time and dont trigger hide away", () => {
             expect(block7).toHaveClass('hidden');
             expect(block8).toHaveClass('hidden');
             expect(block9).toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
             // regular toggle
-            fireEvent.click(getByTestId(container, "trigger-hide-outside-1"));
+            fireEvent.click(getByTestId(container, "trigger-away-1"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).not.toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
-            fireEvent.click(getByTestId(container, "trigger-hide-outside-1"));
+            fireEvent.click(getByTestId(container, "trigger-away-1"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
-            fireEvent.click(getByTestId(container, "trigger-hide-outside-1"));
+            fireEvent.click(getByTestId(container, "trigger-away-1"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).not.toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
-            // outside all, block-outside-1
-            fireEvent.click(getByTestId(container, "block-outside-1"));
+            // away all, block-away-1
+            fireEvent.click(getByTestId(container, "block-away-1"));
             expect(block7).toHaveClass('hidden');
             expect(block8).toHaveClass('hidden');
             expect(block9).toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
             // trigger show and toggle
-            fireEvent.click(getByTestId(container, "trigger-hide-outside-1"));
+            fireEvent.click(getByTestId(container, "trigger-away-1"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).not.toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
-            // outside, block-7
+            // away, block-7
             fireEvent.click(getByTestId(container, "block-7"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).toHaveClass('hidden');
             expect(block9).toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
             // trigger show and toggle
-            fireEvent.click(getByTestId(container, "trigger-hide-outside-1"));
+            fireEvent.click(getByTestId(container, "trigger-away-1"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).not.toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
-            // outside, block-8
+            // away, block-8
             fireEvent.click(getByTestId(container, "block-8"));
             expect(block7).toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
             // trigger show and toggle
-            fireEvent.click(getByTestId(container, "trigger-hide-outside-1"));
+            fireEvent.click(getByTestId(container, "trigger-away-1"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).not.toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
-            // outside, block-9
+            // away, block-9
             fireEvent.click(getByTestId(container, "block-9"));
             expect(block7).toHaveClass('hidden');
             expect(block8).toHaveClass('hidden');
             expect(block9).not.toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
             // trigger show and toggle
-            fireEvent.click(getByTestId(container, "trigger-hide-outside-1"));
+            fireEvent.click(getByTestId(container, "trigger-away-1"));
             expect(block7).not.toHaveClass('hidden');
             expect(block8).not.toHaveClass('hidden');
             expect(block9).toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
 
-            // outside all, block-outside-1
-            fireEvent.click(getByTestId(container, "block-outside-1"));
+            // away all, block-away-1
+            fireEvent.click(getByTestId(container, "block-away-1"));
             expect(block7).toHaveClass('hidden');
             expect(block8).toHaveClass('hidden');
             expect(block9).toHaveClass('hidden');
-            expect(block_outside_1).not.toHaveClass('hidden');
+            expect(block_away_1).not.toHaveClass('hidden');
         });
     });
 });

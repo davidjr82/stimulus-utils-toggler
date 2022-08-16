@@ -26,10 +26,10 @@ application.register('toggler', Toggler);
 ## Usage
 
 1. Attach the controller to an element. Recommended to attach to a top-level container, like `<body>` or `<main>` so it can be used anywhere.
-  * `data-action="click@window->toggler#hideOutside touch@window->toggler#hideOutside"` can be attached to top-level container to use the "hide on click away" utility.
+  * `data-action="click@window->toggler#away touch@window->toggler#away"` can be attached to top-level container to use the "hide on click away" utility.
     * **Example:**
     ```html
-    <main data-controller="toggler" data-action="click@window->toggler#hideOutside touch@window->toggler#hideOutside">...</main>
+    <main data-controller="toggler" data-action="click@window->toggler#away touch@window->toggler#away">...</main>
     ```
 2. Attach an `action` and a `data-[show|hide|toggle]` data attribute to an element that should _perform_ the toggling.
     * **Example:**
@@ -54,11 +54,11 @@ application.register('toggler', Toggler);
     <div data-toggler-name="block1" data-toggler-open>Block 1</div>
     ```
 
-3. Attach a `data-toggler-hide-outside="dropdown1"` to an element if is wanted that, when clicked outside that element, _other element_ is wanted _to be hidden_.
-    * Can be used within multiple elements `data-toggler-hide-outside="dropdown1 dropdown2 sidebar3"`
+3. Attach a `data-toggler-away="dropdown1"` to an element if is wanted that, when clicked outside that element, _other element_ is wanted _to be hidden_.
+    * Can be used within multiple elements `data-toggler-away="dropdown1 dropdown2 sidebar3"`
     * **Example:**
     ```html
-    <div data-toggler-hide-outside="dropdown1">When clicking outside this element, data-togler-name="dropdown1" will be hidden</div>
+    <div data-toggler-away="dropdown1">When clicking outside this element, data-togler-name="dropdown1" will be hidden</div>
     ```
 
 ### Toggle a single element

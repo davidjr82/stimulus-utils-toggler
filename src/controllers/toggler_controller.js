@@ -20,24 +20,24 @@ export default class extends Controller {
         this.toggleClasses(selectors);
     }
 
-    hideOutside(event) {
+    away(event) {
 
         // fill with elements that I am now inside, so will not be hidden
         let in_targets = [];
-        document.querySelectorAll(`[data-toggler-hide-outside]`).forEach(target => {
+        document.querySelectorAll(`[data-toggler-away]`).forEach(target => {
             if(target.contains(event.target)) {
-                in_targets = in_targets.concat(target.getAttribute('data-toggler-hide-outside')?.split(" ") || []);
+                in_targets = in_targets.concat(target.getAttribute('data-toggler-away')?.split(" ") || []);
             }
         });
 
         if(this.debugValue) {
-            console.log('hideOutside - in_targets - ', in_targets);
+            console.log('away - in_targets - ', in_targets);
         }
 
         // hide all elements that are not in in_targets
         let already_analyzed_to_hide = [];
-        document.querySelectorAll(`[data-toggler-hide-outside]`).forEach(target => {
-            let elements_to_hide = target.getAttribute('data-toggler-hide-outside')?.split(" ") || [];
+        document.querySelectorAll(`[data-toggler-away]`).forEach(target => {
+            let elements_to_hide = target.getAttribute('data-toggler-away')?.split(" ") || [];
 
             elements_to_hide.forEach(to_hide => {
                 if(! in_targets.includes(to_hide) && ! already_analyzed_to_hide.includes(to_hide)) {
@@ -46,7 +46,7 @@ export default class extends Controller {
                     this.toggleClasses([to_hide]);
 
                     if(this.debugValue) {
-                        console.log('hideOutside - to_hide - ', to_hide);
+                        console.log('away - to_hide - ', to_hide);
                     }
                 }
 
@@ -54,7 +54,7 @@ export default class extends Controller {
                     already_analyzed_to_hide.push(to_hide);
 
                     if(this.debugValue) {
-                        console.log('hideOutside - already_analyzed_to_hide - ', already_analyzed_to_hide);
+                        console.log('away - already_analyzed_to_hide - ', already_analyzed_to_hide);
                     }
                 }
             });
