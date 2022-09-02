@@ -18,6 +18,15 @@ export default class extends Controller {
         }
 
         this.toggleClasses(selectors);
+
+        // click tab links that matches url hash
+        if(window.location.hash) {
+            document.querySelectorAll(`[data-toggler-tab]`).forEach(tabLink => {
+                if(tabLink.getAttribute('href') == window.location.hash) {
+                    tabLink.click();
+                }
+            });
+        }
     }
 
     away(event) {
